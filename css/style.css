@@ -1,0 +1,1630 @@
+/*=====================================================
+   RESET
+=======================================================*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --blue-dark: #032b49;
+  --blue: #063b63;
+  --blue-light: #0877c9;
+  --gold: #d9a441;
+  --white: #ffffff;
+  --background: #f7f8fa;
+  --text: #17212b;
+  --text-light: #667085;
+  --border: #e6e9ed;
+
+  --header-height: 78px;
+  --radius: 14px;
+  --container: 1240px;
+
+  --transition: .25s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background: var(--background);
+  color: var(--text);
+  line-height: 1.6;
+  padding-top: var(--header-height);
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+img {
+  width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 600;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  z-index: 1000;
+  transition: box-shadow .3s ease;
+}
+
+.header.scrolled {
+  box-shadow:
+    0 8px 30px rgba(3, 43, 73, .08);
+}
+
+.header-container {
+  width: 100%;
+  max-width: 1400px;
+  height: 100%;
+  margin: auto;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.logo img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.logo span {
+  font-size: 1.12rem;
+  font-weight: 700;
+  letter-spacing: -.02em;
+  color: var(--blue-dark);
+  white-space: nowrap;
+}
+
+
+/* =====================================================
+   NAV
+===================================================== */
+
+.nav {
+  flex: 1;
+  min-width: 0;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-list a {
+  position: relative;
+  color: #46515c;
+  font-size: .9rem;
+  font-weight: 500;
+  padding: 8px 0;
+  transition: color .25s ease;
+}
+
+.nav-list a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: var(--blue-light);
+  transition: width .25s ease;
+}
+
+.nav-list a:hover {
+  color: var(--blue-light);
+}
+
+.nav-list a:hover::after {
+  width: 100%;
+}
+
+
+/* =====================================================
+   WHATSAPP HEADER
+===================================================== */
+
+.header-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 18px;
+  background: var(--blue);
+  color: white;
+  border-radius: 8px;
+  font-size: .82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    background .25s ease,
+    transform .25s ease;
+}
+
+.header-whatsapp:hover {
+  background: var(--blue-light);
+  transform: translateY(-1px);
+}
+
+.mobile-whatsapp {
+  display: none;
+}
+
+
+/* =====================================================
+   HAMBURGUER
+===================================================== */
+
+.menu-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  margin-left: auto;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.menu-toggle span {
+  width: 24px;
+  height: 2px;
+  background: var(--blue-dark);
+  border-radius: 10px;
+  transition:
+    transform .3s ease,
+    opacity .3s ease;
+}
+
+.menu-toggle.active span:nth-child(1) {
+  transform:
+    translateY(7px)
+    rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform:
+    translateY(-7px)
+    rotate(-45deg);
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+  position: relative;
+  min-height:
+    calc(100vh - var(--header-height));
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: white;
+  background-image:
+    url("../assets/img/capa-hero.jpeg");
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(3, 43, 73, .88) 0%,
+      rgba(3, 43, 73, .62) 48%,
+      rgba(3, 43, 73, .25) 100%
+    );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--container);
+  margin: auto;
+  padding: 100px 40px;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: rgba(255,255,255,.78);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .2em;
+}
+
+.hero h1 {
+  max-width: 700px;
+  font-family: "Playfair Display", serif;
+  font-size:
+    clamp(3.8rem, 7vw, 6.5rem);
+  line-height: .94;
+  letter-spacing: -.045em;
+  margin-bottom: 28px;
+}
+
+.hero h1 em {
+  color: #e5b85c;
+  font-style: normal;
+}
+
+.hero-content > p:not(.hero-location) {
+  max-width: 540px;
+  color: rgba(255,255,255,.82);
+  font-size: 1.08rem;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+
+/* =====================================================
+   BOTÕES
+===================================================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  min-height: 50px;
+  padding: 0 22px;
+  border-radius: 7px;
+  font-size: .85rem;
+  font-weight: 600;
+  transition:
+    transform .25s ease,
+    background .25s ease,
+    color .25s ease;
+}
+
+.btn-primary {
+  background: var(--blue-light);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #096baa;
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 22px;
+  border: 1.5px solid var(--blue);
+  border-radius: 8px;
+  color: var(--blue);
+  background: transparent;
+  font-size: .8rem;
+  font-weight: 700;
+  transition:
+    background var(--transition),
+    color var(--transition),
+    transform var(--transition);
+}
+
+.hero .btn-outline {
+  color: white;
+  border-color:
+    rgba(255,255,255,.45);
+  background:
+    rgba(255,255,255,.04);
+}
+
+.btn-outline:hover {
+  background: var(--blue);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.hero .btn-outline:hover {
+  background:
+    rgba(255,255,255,.12);
+  color: white;
+}
+
+
+/* =====================================================
+   NÚMEROS
+===================================================== */
+
+.stats {
+  position: relative;
+  background: #fff;
+  border-bottom:
+    1px solid #e5e7eb;
+  z-index: 5;
+}
+
+.stats-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns:
+    repeat(4, 1fr);
+}
+
+.stat {
+  position: relative;
+  padding: 35px 25px;
+  text-align: center;
+}
+
+.stat:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 25%;
+  right: 0;
+  width: 1px;
+  height: 50%;
+  background: #e5e7eb;
+}
+
+.stat strong {
+  display: block;
+  margin-bottom: 3px;
+  color: #063b63;
+  font-family: "Poppins", sans-serif;
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.stat span {
+  display: block;
+  margin-bottom: 5px;
+  color: #0877c9;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.stat p {
+  margin: 0;
+  color: #6b7280;
+  font-size: .78rem;
+}
+
+
+/* =====================================================
+   SEÇÕES
+===================================================== */
+
+.section {
+  padding: 110px 40px;
+}
+
+.section-heading {
+  max-width: 680px;
+  margin: 0 auto 55px;
+  text-align: center;
+}
+
+.eyebrow-dark,
+.eyebrow-light {
+  display: block;
+  margin-bottom: 14px;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .2em;
+}
+
+.eyebrow-dark {
+  color: var(--blue-light);
+}
+
+.eyebrow-light {
+  color: rgba(255,255,255,.65);
+}
+
+.section-heading h2 {
+  color: var(--blue-dark);
+  font-family: "Playfair Display", serif;
+  font-size:
+    clamp(2.3rem, 4vw, 3.5rem);
+  line-height: 1.1;
+  letter-spacing: -.025em;
+  margin-bottom: 16px;
+}
+
+.section-heading p {
+  color: var(--text-light);
+  font-size: 1rem;
+}
+
+
+/* =====================================================
+   AGENDA
+===================================================== */
+
+.agenda {
+  background: var(--background);
+}
+
+
+/* GRADE DE VIAGENS */
+
+.trips-grid {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+
+  /*
+    Desktop:
+    3 viagens por linha
+  */
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+  /*
+    Espaçamento horizontal
+    e vertical entre os cards.
+  */
+  column-gap: 24px;
+  row-gap: 24px;
+}
+
+
+/* CARD */
+.trip-card {
+  width: 100%;
+  min-width: 0;
+  background: white;
+  border:
+    1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition:
+    transform .3s ease,
+    box-shadow .3s ease;
+}
+
+.trip-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 20px 45px rgba(3,43,73,.1);
+}
+
+.trip-card.hidden {
+  display: none;
+}
+
+
+/* IMAGEM DA VIAGEM */
+
+.trip-image {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.trip-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition:
+    transform .5s ease;
+}
+
+.trip-card:hover .trip-image img {
+  transform: scale(1.05);
+}
+
+
+/* DATA */
+
+.trip-date {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  padding: 7px 11px;
+  background: white;
+  color: var(--blue);
+  border-radius: 5px;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+}
+
+.trip-date strong {
+  display: block;
+}
+
+
+/* CONTEÚDO */
+
+.trip-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.trip-type,
+.trip-location {
+  color: var(--blue-light);
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+}
+
+.trip-content h3 {
+  color: var(--blue-dark);
+  font-family: "Playfair Display", serif;
+  font-size: 1.65rem;
+  line-height: 1.2;
+  margin:
+    5px 0 8px;
+}
+
+.trip-content > p {
+  color: var(--text-light);
+  font-size: .85rem;
+  line-height: 1.6;
+}
+
+
+/* INFORMAÇÕES */
+
+.trip-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 15px;
+  margin-top: 18px;
+  color: var(--text-light);
+  font-size: .72rem;
+}
+
+
+/* RODAPÉ DO CARD */
+
+.trip-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: auto;
+  padding-top: 18px;
+  border-top:
+    1px solid var(--border);
+}
+
+.trip-footer small {
+  display: block;
+  color: var(--text-light);
+  font-size: .68rem;
+}
+
+.trip-footer strong {
+  color: var(--blue-dark);
+  font-size: 1.1rem;
+}
+
+.trip-footer a {
+  flex-shrink: 0;
+  color: var(--blue-light);
+  font-size: .78rem;
+  font-weight: 700;
+}
+
+/* BOTÃO DA AGENDA */
+.agenda-footer {
+  margin-top: 40px;
+  text-align: center;
+}
+
+/* =====================================================
+   DESTINOS
+===================================================== */
+
+.destinations {
+  background: #ffffff;
+}
+
+.destination-layout {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns:
+    1.4fr 1fr;
+  gap: 20px;
+}
+
+.destination-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-height: 300px;
+  overflow: hidden;
+  border-radius: var(--radius);
+  isolation: isolate;
+}
+
+.destination-large {
+  min-height: 620px;
+}
+
+.destination-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    transform .6s ease;
+}
+
+.destination-card:hover img {
+  transform: scale(1.05);
+}
+
+.destination-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to top,
+      rgba(3,43,73,.85),
+      rgba(3,43,73,.05) 65%
+    );
+}
+
+.destination-info {
+  position: absolute;
+  left: 30px;
+  right: 30px;
+  bottom: 28px;
+  color: #ffffff;
+  z-index: 2;
+}
+
+.destination-info span {
+  font-size: .65rem;
+  letter-spacing: .18em;
+  font-weight: 700;
+  color:
+    rgba(255,255,255,.75);
+}
+
+.destination-info h3 {
+  font-family:
+    "Playfair Display", serif;
+  font-size: 2rem;
+  margin: 4px 0;
+}
+
+.destination-info p {
+  color:
+    rgba(255,255,255,.75);
+  font-size: .8rem;
+  margin-bottom: 15px;
+}
+
+.destination-info strong {
+  font-size: .75rem;
+}
+
+.destination-small-group {
+  display: grid;
+  grid-template-rows:
+    repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  min-height: 620px;
+}
+
+
+/* =====================================================
+   EXPERIÊNCIAS
+===================================================== */
+
+.experiences {
+  background: var(--blue-dark);
+  color: white;
+}
+
+.experiences .section-heading h2 {
+  color: white;
+}
+
+.experience-grid {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns:
+    repeat(4, 1fr);
+  border-top:
+    1px solid rgba(255,255,255,.15);
+  border-bottom:
+    1px solid rgba(255,255,255,.15);
+}
+
+.experience-item {
+  padding: 38px 28px;
+  border-right:
+    1px solid rgba(255,255,255,.15);
+}
+
+.experience-item:last-child {
+  border-right: 0;
+}
+
+.experience-number {
+  color: var(--gold);
+  font-size: .7rem;
+  font-weight: 700;
+}
+
+.experience-item h3 {
+  font-family:
+    "Playfair Display", serif;
+  font-size: 1.6rem;
+  margin:
+    40px 0 12px;
+}
+
+.experience-item p {
+  color:
+    rgba(255,255,255,.65);
+  font-size: .82rem;
+  line-height: 1.7;
+  min-height: 85px;
+}
+
+.experience-item a {
+  color: white;
+  font-size: .75rem;
+  font-weight: 700;
+}
+
+
+/* =====================================================
+   SOBRE
+===================================================== */
+
+.about {
+  max-width: 1240px;
+  margin: auto;
+  display: grid;
+  grid-template-columns:
+    1fr 1fr;
+  align-items: center;
+  gap: 80px;
+}
+
+.about-image {
+  height: 600px;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+.about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-content h2 {
+  color: var(--blue-dark);
+  font-family:
+    "Playfair Display", serif;
+  font-size:
+    clamp(2.4rem, 4vw, 3.6rem);
+  line-height: 1.08;
+  margin-bottom: 25px;
+}
+
+.about-content > p {
+  color: var(--text-light);
+  margin-bottom: 30px;
+}
+
+.about-list {
+  list-style: none;
+  margin-bottom: 35px;
+}
+
+.about-list li {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 13px;
+  color: #46515c;
+  font-size: .88rem;
+}
+
+.about-list span {
+  color: var(--blue-light);
+  font-weight: 700;
+}
+
+
+/* =====================================================
+   INSTAGRAM
+===================================================== */
+
+.instagram {
+  background: white;
+  text-align: center;
+}
+
+.instagram-grid {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns:
+    repeat(4, 1fr);
+  gap: 12px;
+}
+
+.instagram-item {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.instagram-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition:
+    transform .5s ease;
+}
+
+.instagram-item:hover img {
+  transform: scale(1.06);
+}
+
+.instagram-item span {
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
+  color: white;
+  font-size: .7rem;
+  opacity: 0;
+  transition:
+    opacity .3s ease;
+  z-index: 2;
+}
+
+.instagram-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    rgba(3,43,73,.35);
+  opacity: 0;
+  transition:
+    opacity .3s ease;
+}
+
+.instagram-item:hover::after,
+.instagram-item:hover span {
+  opacity: 1;
+}
+
+.instagram-handle {
+  display: inline-block;
+  margin-top: 30px;
+  color: var(--blue);
+  font-weight: 700;
+  font-size: .9rem;
+}
+
+.instagram-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.instagram-link img,
+.instagram-link .instagram-handle {
+  display: inline-block;
+}
+
+
+/* =====================================================
+   CTA
+===================================================== */
+
+.cta {
+  position: relative;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  background:linear-gradient(
+    135deg,
+    #0b1f33,
+    #164b70
+  );
+}
+
+.cta-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    rgba(3,43,73,.78);
+}
+
+.cta-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  padding: 50px 25px;
+}
+
+.cta-content h2 {
+  font-family:
+    "Playfair Display", serif;
+  font-size:
+    clamp(2.6rem, 5vw, 4.5rem);
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+
+.cta-content p {
+  color:
+    rgba(255,255,255,.75);
+  margin-bottom: 30px;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer {
+  background: #021f35;
+  color: white;
+  padding:
+    75px 40px 25px;
+}
+
+.footer-main {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns:
+    2fr 1fr 1fr 1fr;
+  gap: 60px;
+  padding-bottom: 60px;
+}
+
+.footer-logo span {
+  color: white;
+}
+
+.footer-brand p {
+  max-width: 260px;
+  color:
+    rgba(255,255,255,.55);
+  font-size: .82rem;
+  margin: 20px 0;
+}
+
+.footer-instagram {
+  color: white;
+  font-size: .8rem;
+  font-weight: 600;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-column h4 {
+  font-size: .75rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  margin-bottom: 12px;
+}
+
+.footer-column a {
+  color:
+    rgba(255,255,255,.55);
+  font-size: .8rem;
+  transition:
+    color .25s ease;
+}
+
+.footer-column a:hover {
+  color: white;
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: auto;
+  padding-top: 22px;
+  border-top:
+    1px solid rgba(255,255,255,.12);
+  display: flex;
+  justify-content: space-between;
+  color:
+    rgba(255,255,255,.4);
+  font-size: .7rem;
+}
+
+
+/* =====================================================
+   WHATSAPP FLUTUANTE
+===================================================== */
+
+.whatsapp-float {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #25d366;
+  border-radius: 50%;
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.18);
+  z-index: 900;
+  transition:
+    transform .25s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.08);
+}
+
+.whatsapp-float img {
+  width: 29px;
+  height: 29px;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1000px) {
+  :root {
+    --header-height: 70px;
+  }
+
+  .header-container {
+    padding: 0 25px;
+    gap: 15px;
+  }
+
+  /* MENU */
+
+  .nav {
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    background: white;
+    box-shadow:
+      0 15px 30px rgba(0,0,0,.08);
+    display: none;
+  }
+
+  .nav.active {
+    display: block;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 10px 25px;
+  }
+
+  .nav-list li {
+    width: 100%;
+  }
+
+  .nav-list a {
+    display: block;
+    padding: 14px 5px;
+    border-bottom:
+      1px solid var(--border);
+  }
+
+  .header-whatsapp {
+    display: none;
+  }
+
+  .mobile-whatsapp {
+    display: flex;
+    margin:
+      15px 25px 20px;
+    padding: 13px;
+    align-items: center;
+    justify-content: center;
+    background: #25d366;
+    color: white;
+    border-radius: 7px;
+    font-size: .85rem;
+    font-weight: 600;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+
+  /* AGENDA */
+
+  .trips-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+    column-gap: 20px;
+    row-gap: 24px;
+  }
+
+
+  /* EXPERIÊNCIAS */
+
+  .experience-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .experience-item:nth-child(2) {
+    border-right: 0;
+  }
+
+  .experience-item:nth-child(-n+2) {
+    border-bottom:
+      1px solid rgba(255,255,255,.15);
+  }
+
+
+  /* SOBRE */
+
+  .about {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+  .about-image {
+    height: 450px;
+  }
+
+
+  /* FOOTER */
+
+  .footer-main {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+
+  /* ESTATÍSTICAS */
+
+  .stats-container {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .stat:nth-child(2)::after {
+    display: none;
+  }
+
+  .stat:nth-child(-n + 2) {
+    border-bottom:
+      1px solid #e5e7eb;
+  }
+
+
+  /* DESTINOS */
+
+  .destination-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .destination-large {
+    min-height: 450px;
+  }
+
+  .destination-small-group {
+    min-height: auto;
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
+    gap: 20px;
+  }
+
+  .destination-small-group .destination-card {
+    min-height: 300px;
+  }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+  .section {
+    padding:
+      80px 20px;
+  }
+
+  /* HEADER */
+
+  .header-container {
+    padding: 0 18px;
+  }
+
+  .logo img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .logo span {
+    font-size: 1rem;
+  }
+
+  /* HERO */
+
+  .hero-content {
+    padding:
+      80px 20px;
+  }
+
+  .hero h1 {
+    font-size:
+      clamp(3.2rem, 15vw, 5rem);
+  }
+
+  .hero-content > p:not(.hero-location) {
+    font-size: .95rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+
+  /* ESTATÍSTICAS */
+
+  .stats-container {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .stat {
+    padding:
+      28px 15px;
+  }
+
+  .stat strong {
+    font-size: 1.9rem;
+  }
+
+  .stat span {
+    font-size: .68rem;
+  }
+
+  .stat p {
+    font-size: .7rem;
+  }
+
+
+  /* =================================================
+     AGENDA MOBILE
+  ================================================= */
+
+  .trips-grid {
+    width: 100%;
+
+    /*
+      UMA viagem por linha
+    */
+    grid-template-columns: 1fr;
+
+    /*
+      Não precisamos de espaço horizontal
+      porque existe apenas uma coluna.
+    */
+    column-gap: 0;
+
+    /*
+      ESPAÇO ENTRE UMA VIAGEM E OUTRA.
+    */
+    row-gap: 24px;
+  }
+
+  .trip-card {
+    width: 100%;
+
+    min-width: 0;
+  }
+
+  .trip-image {
+    width: 100%;
+    height: 220px;
+  }
+
+  .trip-content {
+    padding: 20px;
+  }
+
+  .trip-content h3 {
+    font-size: 1.45rem;
+  }
+
+  .trip-content > p {
+    font-size: .82rem;
+  }
+
+  .trip-info {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .trip-footer {
+    align-items: center;
+  }
+
+  .trip-footer strong {
+    font-size: 1rem;
+  }
+
+  .trip-footer a {
+    font-size: .75rem;
+  }
+
+
+  /* =================================================
+     DESTINOS MOBILE
+  ================================================= */
+
+  .destination-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .destination-large {
+    min-height: 380px;
+  }
+
+  .destination-small-group {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    gap: 20px;
+    min-height: auto;
+  }
+
+  .destination-small-group .destination-card {
+    min-height: 320px;
+  }
+
+  .destination-info {
+    left: 22px;
+    right: 22px;
+    bottom: 22px;
+  }
+
+  .destination-info h3 {
+    font-size: 1.8rem;
+  }
+
+
+  /* =================================================
+     EXPERIÊNCIAS
+  ================================================= */
+
+  .experience-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .experience-item {
+    border-right: 0;
+    border-bottom:
+      1px solid rgba(255,255,255,.15);
+  }
+
+  .experience-item:last-child {
+    border-bottom: 0;
+  }
+
+
+  /* =================================================
+     SOBRE
+  ================================================= */
+
+  .about-image {
+    height: 350px;
+  }
+
+
+  /* =================================================
+     INSTAGRAM
+  ================================================= */
+
+  .instagram-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+    gap: 8px;
+  }
+
+
+  /* =================================================
+     CTA
+  ================================================= */
+
+  .cta {
+    min-height: 450px;
+  }
+
+
+  /* =================================================
+     FOOTER
+  ================================================= */
+
+  .footer {
+    padding:
+      60px 20px 25px;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-bottom: 40px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+
+  /* =================================================
+     WHATSAPP
+  ================================================= */
+
+  .whatsapp-float {
+    right: 16px;
+    bottom: 16px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .whatsapp-float img {
+    width: 27px;
+    height: 27px;
+  }
+}
+
+
+/* =====================================================
+   MOBILE MUITO PEQUENO
+===================================================== */
+
+@media (max-width: 380px) {
+
+  .logo span {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 3.1rem;
+  }
+
+  .trip-image {
+    height: 200px;
+  }
+
+  .trip-content {
+    padding: 18px;
+  }
+
+  .trip-footer {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .trip-footer a {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    border:
+      1px solid var(--blue-light);
+    border-radius: 6px;
+  }
+
+  .instagram-grid {
+    grid-template-columns: 1fr;
+  }
+}
